@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask ground;
 
     private Rigidbody2D rb;
-
     private Collider2D col;
+   
 
     private void Awake()
     {
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //read the movement value
         float movementInput = playerActionControls.Land.Move.ReadValue<float>();
