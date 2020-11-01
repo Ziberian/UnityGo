@@ -37,6 +37,17 @@ public class @PlayerActionControls : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
+                    ""name"": """",
+                    ""id"": ""70b13981-9ee5-4dca-a084-553c3dfa89f9"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""Sideways"",
                     ""id"": ""b5a3c87a-60fb-46af-973a-8fcd8e42ab47"",
                     ""path"": ""1DAxis"",
@@ -68,17 +79,6 @@ public class @PlayerActionControls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""70b13981-9ee5-4dca-a084-553c3dfa89f9"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -108,6 +108,98 @@ public class @PlayerActionControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""NextToWallR"",
+            ""id"": ""0a759f0b-2cf6-45a5-ad60-c2e458993716"",
+            ""actions"": [
+                {
+                    ""name"": ""HangOn"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4971e3e9-a3de-4672-aa60-84196f3e98e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a68a7672-3cc7-4394-85d6-81a5cd15ca80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""befb3d14-5eab-41b9-92bc-88d4deaf3aea"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HangOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6243add3-88a7-4044-95be-dd428e15c259"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""NextToWallL"",
+            ""id"": ""a0bb2d1c-1bfd-40bc-b098-e50a063d65d7"",
+            ""actions"": [
+                {
+                    ""name"": ""HangOn"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""90266195-ebe6-4a40-be4e-1d14dcbefd7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""32170615-be44-4dbd-924a-501f6296886f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""83492b97-ec14-4a4b-82fa-08c05c5e8813"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HangOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66f883f2-5152-44db-9b4a-9725be1f9272"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -119,6 +211,14 @@ public class @PlayerActionControls : IInputActionCollection, IDisposable
         // Water
         m_Water = asset.FindActionMap("Water", throwIfNotFound: true);
         m_Water_Newaction = m_Water.FindAction("New action", throwIfNotFound: true);
+        // NextToWallR
+        m_NextToWallR = asset.FindActionMap("NextToWallR", throwIfNotFound: true);
+        m_NextToWallR_HangOn = m_NextToWallR.FindAction("HangOn", throwIfNotFound: true);
+        m_NextToWallR_Jump = m_NextToWallR.FindAction("Jump", throwIfNotFound: true);
+        // NextToWallL
+        m_NextToWallL = asset.FindActionMap("NextToWallL", throwIfNotFound: true);
+        m_NextToWallL_HangOn = m_NextToWallL.FindAction("HangOn", throwIfNotFound: true);
+        m_NextToWallL_Jump = m_NextToWallL.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -238,6 +338,88 @@ public class @PlayerActionControls : IInputActionCollection, IDisposable
         }
     }
     public WaterActions @Water => new WaterActions(this);
+
+    // NextToWallR
+    private readonly InputActionMap m_NextToWallR;
+    private INextToWallRActions m_NextToWallRActionsCallbackInterface;
+    private readonly InputAction m_NextToWallR_HangOn;
+    private readonly InputAction m_NextToWallR_Jump;
+    public struct NextToWallRActions
+    {
+        private @PlayerActionControls m_Wrapper;
+        public NextToWallRActions(@PlayerActionControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @HangOn => m_Wrapper.m_NextToWallR_HangOn;
+        public InputAction @Jump => m_Wrapper.m_NextToWallR_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_NextToWallR; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NextToWallRActions set) { return set.Get(); }
+        public void SetCallbacks(INextToWallRActions instance)
+        {
+            if (m_Wrapper.m_NextToWallRActionsCallbackInterface != null)
+            {
+                @HangOn.started -= m_Wrapper.m_NextToWallRActionsCallbackInterface.OnHangOn;
+                @HangOn.performed -= m_Wrapper.m_NextToWallRActionsCallbackInterface.OnHangOn;
+                @HangOn.canceled -= m_Wrapper.m_NextToWallRActionsCallbackInterface.OnHangOn;
+                @Jump.started -= m_Wrapper.m_NextToWallRActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_NextToWallRActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_NextToWallRActionsCallbackInterface.OnJump;
+            }
+            m_Wrapper.m_NextToWallRActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @HangOn.started += instance.OnHangOn;
+                @HangOn.performed += instance.OnHangOn;
+                @HangOn.canceled += instance.OnHangOn;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+            }
+        }
+    }
+    public NextToWallRActions @NextToWallR => new NextToWallRActions(this);
+
+    // NextToWallL
+    private readonly InputActionMap m_NextToWallL;
+    private INextToWallLActions m_NextToWallLActionsCallbackInterface;
+    private readonly InputAction m_NextToWallL_HangOn;
+    private readonly InputAction m_NextToWallL_Jump;
+    public struct NextToWallLActions
+    {
+        private @PlayerActionControls m_Wrapper;
+        public NextToWallLActions(@PlayerActionControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @HangOn => m_Wrapper.m_NextToWallL_HangOn;
+        public InputAction @Jump => m_Wrapper.m_NextToWallL_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_NextToWallL; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NextToWallLActions set) { return set.Get(); }
+        public void SetCallbacks(INextToWallLActions instance)
+        {
+            if (m_Wrapper.m_NextToWallLActionsCallbackInterface != null)
+            {
+                @HangOn.started -= m_Wrapper.m_NextToWallLActionsCallbackInterface.OnHangOn;
+                @HangOn.performed -= m_Wrapper.m_NextToWallLActionsCallbackInterface.OnHangOn;
+                @HangOn.canceled -= m_Wrapper.m_NextToWallLActionsCallbackInterface.OnHangOn;
+                @Jump.started -= m_Wrapper.m_NextToWallLActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_NextToWallLActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_NextToWallLActionsCallbackInterface.OnJump;
+            }
+            m_Wrapper.m_NextToWallLActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @HangOn.started += instance.OnHangOn;
+                @HangOn.performed += instance.OnHangOn;
+                @HangOn.canceled += instance.OnHangOn;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+            }
+        }
+    }
+    public NextToWallLActions @NextToWallL => new NextToWallLActions(this);
     public interface ILandActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -246,5 +428,15 @@ public class @PlayerActionControls : IInputActionCollection, IDisposable
     public interface IWaterActions
     {
         void OnNewaction(InputAction.CallbackContext context);
+    }
+    public interface INextToWallRActions
+    {
+        void OnHangOn(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+    }
+    public interface INextToWallLActions
+    {
+        void OnHangOn(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

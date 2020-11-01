@@ -13,9 +13,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed = 5.0f;
     [SerializeField] private LayerMask ground;
 
+    public bool canJump;
+
     private Rigidbody2D rb;
     private Collider2D col;
-   
 
     private void Awake()
     {
@@ -37,17 +38,19 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //distToGround = col.bounds.extents.y;
         playerActionControls.Land.Jump.performed += _ => Jump();
     }
 
     private void Jump()
     {
-        if(IsGrounded())
+        if(canJump)
         {
             rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            canJump = false;
         }
     }
-
+/*
     private bool IsGrounded()
     {
         Vector2 feetPos = transform.position;
@@ -55,9 +58,28 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(feetPos, .1f, ground);
     }
 
+    void OnCollisionStay2D(Collision2D col) {
+ 
+        if (col.gameObject.tag != "Ground")
+        {
+            canJump = true;
+        }
+    }
+*/
+    private bool IsGrounded()
+    {
+        //int layerMask = 1 << 8;     
+        //return Physics2D.Raycast(col.bounds.center, Vector2.down * 0.1f, col.bounds.extents.y + 0.1f, layerMask);
+        return Physics.Raycast(col.bounds.center,Vector2.down, col.bounds.extents.y);
+        if(Physics.Raycast(col.bounds.center,Vector2.down, col.bounds.extents.y)) { 
+            if (col.gameObject.tag == "Ground") {UnityEngine.Debug.DrawRay(transform.position, transform.forward, Color.green); print("Hit"); } }
+    }
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
+
         //read the movement value
         float movementInput = playerActionControls.Land.Move.ReadValue<float>();
 
