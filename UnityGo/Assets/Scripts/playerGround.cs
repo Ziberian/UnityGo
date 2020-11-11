@@ -4,29 +4,20 @@ using UnityEngine;
 
 public class playerGround : MonoBehaviour
 {
-    /*
+
     public PlayerMovement playerMovement;
+    public GameObject player;
+    private Collider2D collider;
 
-   private Collider2D col;
-
-    // Start is called before the first frame update
    private void OnEnable()
     {
-        col = GetComponent<Collider2D>();
+        collider = GetComponent<Collider2D>();
     }
 
-    void OnCollisionStay2D(Collision2D col) {
- 
-        if (col.gameObject.tag != "Ground")
-        {
-            playerMovement.haveJumped = false;
-            playerMovement.canJump = true;
-            GetComponent<Collider2D> ().enabled = false;
-        }
-        if (playerMovement.haveJumped = true)
-        {
-            GetComponent<Collider2D> ().enabled = true;
-        }
+    void OnCollisionStay2D(Collision2D col) 
+    {
+        Physics2D.IgnoreCollision(collider, player.GetComponent<Collider2D>());
+        playerMovement.canJump = true;
     }
 
     void Start()
@@ -39,5 +30,5 @@ public class playerGround : MonoBehaviour
     {
         
     }
-    */
+
 }

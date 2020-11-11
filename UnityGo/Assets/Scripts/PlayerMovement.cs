@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 3.0f;
     [SerializeField] private float jumpSpeed = 5.0f;
     [SerializeField] private LayerMask ground;
-
+    [SerializeField] private GameObject playerGround;
+    private Collider2D gcol;
     public bool canJump;
 
     private Rigidbody2D rb;
@@ -21,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerActionControls = new PlayerActionControls();
+        gcol = playerGround.GetComponent<Collider2D>();
+        canJump = false;
     }
 
     private void OnEnable()
@@ -50,14 +53,9 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
     }
-/*
-    private bool IsGrounded()
-    {
-        Vector2 feetPos = transform.position;
-        feetPos.y -= col.bounds.extents.y;
-        return Physics2D.OverlapCircle(feetPos, .1f, ground);
-    }
 
+
+/*
     void OnCollisionStay2D(Collision2D col) {
  
         if (col.gameObject.tag != "Ground")
@@ -65,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
         }
     }
-*/
+
     private bool IsGrounded()
     {
         //int layerMask = 1 << 8;     
@@ -74,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         if(Physics.Raycast(col.bounds.center,Vector2.down, col.bounds.extents.y)) { 
             if (col.gameObject.tag == "Ground") {UnityEngine.Debug.DrawRay(transform.position, transform.forward, Color.green); print("Hit"); } }
     }
+*/
 
 
     // Update is called once per frame
